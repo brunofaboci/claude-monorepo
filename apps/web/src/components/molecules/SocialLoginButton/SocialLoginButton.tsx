@@ -9,12 +9,11 @@ export function SocialLoginButton({ icon, label, onClick }: SocialLoginButtonPro
     <button
       type="button"
       onClick={onClick}
-      className="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity group"
+      aria-label={`Entrar com ${label}`}
+      className="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
     >
-      <div className="w-12 h-12 rounded-full bg-dark-surface border border-dark-border flex items-center justify-center group-hover:border-accent-green transition-colors">
-        <img src={icon} alt={label} className="w-6 h-6 object-contain" />
-      </div>
-      <span className="text-xs text-text-secondary">{label}</span>
+      <img src={icon} alt="" className="w-8 h-8 object-contain" />
+      <span className="text-xs text-text-primary">{label}</span>
     </button>
   )
 }

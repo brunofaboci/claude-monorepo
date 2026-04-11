@@ -7,7 +7,7 @@ interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 const sizeMap: Record<HeadingLevel, string> = {
-  h1: 'text-4xl font-bold',
+  h1: 'text-3xl font-semibold',
   h2: 'text-2xl font-semibold',
   h3: 'text-xl font-semibold',
   h4: 'text-lg font-medium',

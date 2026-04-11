@@ -88,6 +88,40 @@ Rules:
 
 All styling is done via Tailwind utility classes. No separate CSS files for component styles (global styles in `index.css` only). Avoid inline `style` props.
 
+#### Color palette
+
+All project colors are registered as CSS custom properties in `apps/web/src/index.css` under `@theme` and are available as Tailwind utilities:
+
+| Token | Hex | Usage |
+|---|---|---|
+| `dark-bg` | `#00090e` | Page background |
+| `dark-surface` | `#171d1f` | Card / surface background |
+| `dark-input` | `#888888` | Input background |
+| `dark-border` | `#888888` | Borders |
+| `accent-green` | `#81fe88` | Primary accent, CTA backgrounds |
+| `accent-green-hover` | `#71ee78` | Hover state of accent |
+| `btn-text` | `#132e35` | Text on accent-green buttons |
+| `text-primary` | `#e1e1e1` | Primary text |
+| `text-secondary` | `#9ca3af` | Secondary / muted text |
+| `text-muted` | `#6b7280` | Placeholder / disabled text |
+
+**Rules:**
+- Never use hardcoded hex values in Tailwind classes (e.g. `bg-[#171d1f]` → `bg-dark-surface`)
+- Never use hardcoded hex values in SVG attributes — use `fill-{token}` / `stroke-{token}` Tailwind classes instead
+- To add a new color, register it in `@theme` in `index.css` first, then use the generated utility
+
+#### Typography
+
+Font family is `Prompt` (Google Fonts), loaded in `index.html`. Use standard Tailwind size tokens — never use arbitrary sizes like `text-[18px]`.
+
+| Token | Size | Figma style |
+|---|---|---|
+| `text-xs` | 12px | Label |
+| `text-sm` | 14px | Paragraph Small |
+| `text-lg` | 18px | Paragraph |
+| `text-2xl` | 24px | Paragraph Large |
+| `text-3xl` | 30px | Subtitle Large |
+
 ### Component Tests
 
 Every component must have a co-located test file (`ComponentName.test.tsx`) covering its essential usage. Use the testing library available in the project. Tests must cover at minimum: renders without crashing, and the primary interactive behavior if any.

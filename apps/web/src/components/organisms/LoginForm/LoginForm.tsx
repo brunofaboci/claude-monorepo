@@ -22,16 +22,11 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    onSubmit({ identifier, password, remember })
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+    <form onSubmit={(e) => { e.preventDefault(); onSubmit({ identifier, password, remember }) }} className="flex flex-col gap-5">
       <div className="flex flex-col gap-1">
         <Heading as="h1">Login</Heading>
-        <p className="text-accent-green text-sm">Boas-vindas! Faça seu login.</p>
+        <p className="text-text-primary text-2xl">Boas-vindas! Faça seu login.</p>
       </div>
 
       <FormField
@@ -72,7 +67,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
       <p className="text-center text-sm text-text-secondary">
         Ainda não tem conta?{' '}
         <TextLink href="/signup" variant="accent">
-          Crie seu cadastro! 📋
+          Crie seu cadastro!
         </TextLink>
       </p>
     </form>

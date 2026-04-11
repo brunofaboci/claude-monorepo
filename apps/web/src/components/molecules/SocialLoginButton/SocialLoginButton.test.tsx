@@ -6,7 +6,7 @@ describe('SocialLoginButton', () => {
   it('renders label and icon', () => {
     render(<SocialLoginButton icon="/Github.png" label="Github" />)
     expect(screen.getByText('Github')).toBeInTheDocument()
-    expect(screen.getByAltText('Github')).toBeInTheDocument()
+    expect(screen.getByRole('presentation')).toBeInTheDocument()
   })
 
   it('calls onClick when clicked', async () => {
