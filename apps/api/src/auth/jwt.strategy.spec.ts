@@ -36,22 +36,22 @@ describe('JwtStrategy', () => {
   });
 
   describe('validate', () => {
-    it('should return the user when payload is valid', () => {
-      usersService.findById.mockReturnValue(mockUser);
+    it('should return the user when payload is valid', async () => {
+      usersService.findById.mockResolvedValue(mockUser);
 
-      const result = strategy.validate({
+      const result = await strategy.validate({
         sub: mockUser.id,
         email: mockUser.email,
       });
       expect(result).toBe(mockUser);
     });
 
-    it('should throw UnauthorizedException when user is not found', () => {
-      usersService.findById.mockReturnValue(undefined);
+    it('should throw UnauthorizedException when user is not found', async () => {
+      usersService.findById.mockResolvedValue(null);
 
-      expect(() =>
+      await expect(
         strategy.validate({ sub: 'invalid-id', email: 'test@test.com' }),
-      ).toThrow(UnauthorizedException);
+      ).rejects.toThrow(UnauthorizedException);
     });
   });
 });

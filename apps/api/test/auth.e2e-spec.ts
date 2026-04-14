@@ -2,6 +2,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import request from 'supertest';
 import { App } from 'supertest/types';
+import { DataSource } from 'typeorm';
 import { SessionResponseDto } from '../src/auth/dto/session-response.dto';
 import { UserResponseDto } from '../src/users/dto/user-response.dto';
 import { AppModule } from '../src/app.module';
@@ -27,6 +28,8 @@ describe('Auth (e2e)', () => {
   });
 
   afterAll(async () => {
+    const dataSource = app.get(DataSource);
+    await dataSource.synchronize(true);
     await app.close();
   });
 

@@ -43,7 +43,7 @@ describe('AuthService', () => {
 
   describe('validateUser', () => {
     it('should return the user when credentials are valid', async () => {
-      usersService.findByEmail.mockReturnValue(mockUser);
+      usersService.findByEmail.mockResolvedValue(mockUser);
 
       const result = await service.validateUser(
         'joao@exemplo.com',
@@ -53,7 +53,7 @@ describe('AuthService', () => {
     });
 
     it('should return null when password is wrong', async () => {
-      usersService.findByEmail.mockReturnValue(mockUser);
+      usersService.findByEmail.mockResolvedValue(mockUser);
 
       const result = await service.validateUser(
         'joao@exemplo.com',
@@ -63,7 +63,7 @@ describe('AuthService', () => {
     });
 
     it('should return null when user does not exist', async () => {
-      usersService.findByEmail.mockReturnValue(undefined);
+      usersService.findByEmail.mockResolvedValue(null);
 
       const result = await service.validateUser(
         'naoexiste@exemplo.com',
