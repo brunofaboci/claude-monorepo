@@ -23,4 +23,15 @@ describe('LoginForm', () => {
       remember: false,
     })
   })
+
+  it('displays error message when error prop is provided', () => {
+    render(<LoginForm onSubmit={() => {}} error="Credenciais inválidas" />)
+    expect(screen.getByRole('alert')).toHaveTextContent('Credenciais inválidas')
+  })
+
+  it('disables submit button and shows loading text when isSubmitting', () => {
+    render(<LoginForm onSubmit={() => {}} isSubmitting />)
+    const btn = screen.getByRole('button', { name: /entrando/i })
+    expect(btn).toBeDisabled()
+  })
 })

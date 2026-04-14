@@ -25,4 +25,15 @@ describe('SignupForm', () => {
       remember: false,
     })
   })
+
+  it('displays error message when error prop is provided', () => {
+    render(<SignupForm onSubmit={() => {}} error="Email já cadastrado" />)
+    expect(screen.getByRole('alert')).toHaveTextContent('Email já cadastrado')
+  })
+
+  it('disables submit button and shows loading text when isSubmitting', () => {
+    render(<SignupForm onSubmit={() => {}} isSubmitting />)
+    const btn = screen.getByRole('button', { name: /cadastrando/i })
+    expect(btn).toBeDisabled()
+  })
 })
