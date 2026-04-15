@@ -17,6 +17,7 @@
     "api:build": "pnpm --filter api build",
     "api:test": "pnpm --filter api test",
     "api:lint": "pnpm --filter api lint",
+    "api:seed": "pnpm --filter api seed",
 
     "dev": "pnpm --parallel --filter '*' run dev",
     "build": "pnpm --filter '*' run build",

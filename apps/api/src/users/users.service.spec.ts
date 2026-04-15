@@ -94,7 +94,9 @@ describe('UsersService', () => {
     it('should return null for unknown id', async () => {
       repo.findOneBy.mockResolvedValue(null);
 
-      const found = await service.findById('00000000-0000-0000-0000-000000000000');
+      const found = await service.findById(
+        '00000000-0000-0000-0000-000000000000',
+      );
       expect(found).toBeNull();
     });
   });

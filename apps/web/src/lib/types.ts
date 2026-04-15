@@ -27,3 +27,55 @@ export interface ApiError {
   statusCode: number
   error?: string
 }
+
+export interface TagResponse {
+  id: string
+  name: string
+}
+
+export interface PostAuthor {
+  id: string
+  name: string
+}
+
+export interface PostResponse {
+  id: string
+  title: string
+  description: string
+  thumbnailUrl: string | null
+  author: PostAuthor
+  tags: TagResponse[]
+  likesCount: number
+  commentsCount: number
+  isLikedByMe: boolean
+  createdAt: string
+}
+
+export interface CommentResponse {
+  id: string
+  content: string
+  author: PostAuthor
+  createdAt: string
+}
+
+export interface PostDetailResponse extends PostResponse {
+  comments: CommentResponse[]
+}
+
+export interface PaginatedResponse<T> {
+  data: T[]
+  total: number
+  page: number
+  limit: number
+}
+
+export interface CreatePostRequest {
+  title: string
+  description: string
+  thumbnailUrl?: string
+  tagIds?: string[]
+}
+
+export interface CreateCommentRequest {
+  content: string
+}
